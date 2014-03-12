@@ -10,40 +10,9 @@
     </head>
     <body>
         <div id="sign-in" style="position:fixed; top:0; right:0; ">
-            <button type="button" class="btn-default">Sign in</button>
+            <button onclick="window.location.href = 'login.html'" 
+                    type="button" class="btn-default">Sign in</button>
         </div>
-
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#">Etusivu</a></li>
-            <li><a href="#">Lennontiedot</a></li>
-            <li><a href="#">Raportit</a></li>
-            <li><a href="#">Tuotteiden ylläpito</a></li>
-            <li><a href="#">Ostoskori</a></li>
-        </ul>
-
-        <div class="container">
-            <h1>Tuotteita</h1>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Kuva</th>
-                        <th>Kuvaus</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Inc</td>
-                        <td>Hieno tuote osta nyt!</td>
-                        <td><button type="button" class="btn btn-xs btn-default">
-                                <span class="glyphicon glyphicon-plus"></span></button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-
+        <?php inclue("NavBar.php"); ?>
     </body>
 </html>
