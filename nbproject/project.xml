@@ -5,5 +5,13 @@
         <data xmlns="http://www.netbeans.org/ns/php-project/1">
             <name>tsoha</name>
         </data>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>Lennontiedot</word>
+            <word>Ostoskori</word>
+            <word>Raportit</word>
+            <word>sisään</word>
+            <word>Tuoteryhmä</word>
+            <word>ylläpito</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>

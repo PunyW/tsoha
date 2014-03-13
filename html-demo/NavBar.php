@@ -1,15 +1,31 @@
-<div id="sign-in" style="position:fixed; top:0; right:0; ">
-    <button onclick="window.location.href = 'login.html'" 
-            type="button" class="btn-default">Sign in</button>
-</div>
+<link href="../css/navbar.css" rel="stylesheet">
 
-<ul class="nav nav-tabs">
-    <li <?= echoActiveClassIfRequestMatches("index") ?>><a href="index.php">Etusivu</a></li>
-    <li <?= echoActiveClassIfRequestMatches("lennontiedot") ?>><a href="lennontiedot.php">Lennontiedot</a></li>
-    <li <?= echoActiveClassIfRequestMatches("raportit") ?>><a href="#">Raportit</a></li>
-    <li <?= echoActiveClassIfRequestMatches("tuotteet") ?>><a href="#">Tuotteiden ylläpito</a></li>
-    <li <?= echoActiveClassIfRequestMatches("ostoskori") ?>><a href="#">Ostoskori</a></li>
-</ul>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class ="navbar-brand" href="index.php">Ostoskassi</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li <?= echoActiveClassIfRequestMatches("index") ?>><a href="index.php">Tuotteet</a></li>
+                <li <?= echoActiveClassIfRequestMatches("lennontiedot") ?>><a href="lennontiedot.php">Lennontiedot</a></li>
+                <li <?= echoActiveClassIfRequestMatches("raportit") ?>><a href="#">Raportit</a></li>
+                <li <?= echoActiveClassIfRequestMatches("tuotteet") ?>><a href="#">Tuotteiden ylläpito</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li <?= echoActiveClassIfRequestMatches("") ?>><a href="#">Ostoskori</a></li>
+                <li <?= echoActiveClassIfRequestMatches("") ?>><a href="login.html">Kirjaudu sisään</a></li>      
+            </ul>
+        </div> <!-- /.nav-collapse -->
+    </div>
+</div>
 
 <?php
 
@@ -20,4 +36,3 @@ function echoActiveClassIfRequestMatches($requestUri) {
         echo 'class="active"';
     }
 }
-

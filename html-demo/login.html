@@ -5,23 +5,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="../css/bootstrap-theme.css" rel="stylesheet">
-        <link href="../css/main.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/signin.css" rel="stylesheet">
     </head>
     <body>
-        <form id='login' method='post' accept-charset="UTF-8">
-            <fieldset>
-                <legend>Login</legend>
-                <input type='hidden' name="submitted" id='submitted' value='1'/>
-
-                <label for='username'>Sukunimi*:</label>
-                <input type='text' name='username' id='username' maxlength="50" placeholder="Sukunimi"/>
-
-                <label for='password'>Varausnumero*: </label>
-                <input type='text' name='password' id='password' maxlength="50" placeholder="Varausnumero"/>
-
-                <input type='submit' name='Submit' value='Submit' />
-            </fieldset>
-        </form>
+        <div class="container">
+            <form class="form-signin" role="form">
+                <h2 class="form-signin-heading">Kirjaudu sisään</h2>
+                <input type="email" class="form-control" placeholder="Sukunimi" required autofocus>
+                <input type="password" class="form-control" placeholder="Varausnumero" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Kirjaudu sisään</button>
+            </form>
+        </div>
     </body>
 </html>
