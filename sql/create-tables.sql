@@ -1,6 +1,6 @@
 CREATE TABLE user_groups(
     id SERIAL PRIMARY KEY,
-    description TEXT NOT NULL
+    description VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE flights (
