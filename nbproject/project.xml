@@ -6,12 +6,28 @@
             <name>tsoha</name>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>EFHK</word>
+            <word>esittelykuva</word>
             <word>Lennontiedot</word>
+            <word>Lentokenttä</word>
+            <word>Lähtöaika</word>
+            <word>Lähtömaa</word>
+            <word>Lähtöportti</word>
+            <word>muokkaus</word>
+            <word>Ostoskassi</word>
             <word>Ostoskori</word>
+            <word>Päivitä</word>
             <word>Raportit</word>
+            <word>Ruotsi</word>
             <word>sisään</word>
+            <word>STCK</word>
+            <word>Tervetuloa</word>
+            <word>Tilaukset</word>
+            <word>Toiveet</word>
             <word>Tukholma</word>
             <word>Tuoteryhmä</word>
+            <word>Tuotteita</word>
+            <word>VANTAA</word>
             <word>ylläpito</word>
         </spellchecker-wordlist>
     </configuration>

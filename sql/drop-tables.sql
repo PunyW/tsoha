@@ -1,0 +1,9 @@
+DROP TABLE orders;
+DROP TABLE products;
+DROP TABLE product_categories;
+DROP TABLE wishes;
+DROP TABLE wish;
+DROP TABLE passengers;
+DROP TABLE reservations;
+DROP TABLE flights;
+DROP TABLE user_groups;

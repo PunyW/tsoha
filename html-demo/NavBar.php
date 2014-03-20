@@ -1,4 +1,4 @@
-<link href="../css/navbar.css" rel="stylesheet">
+<link href="../assets/css/navbar.css" rel="stylesheet">
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -16,8 +16,8 @@
             <ul class="nav navbar-nav">
                 <li <?= echoActiveClassIfRequestMatches("index") ?>><a href="index.php">Tuotteet</a></li>
                 <li <?= echoActiveClassIfRequestMatches("lennontiedot") ?>><a href="lennontiedot.php">Lennontiedot</a></li>
-                <li <?= echoActiveClassIfRequestMatches("raportit") ?>><a href="#">Raportit</a></li>
-                <li <?= echoActiveClassIfRequestMatches("tuotteet") ?>><a href="#">Tuotteiden ylläpito</a></li>
+                <li <?= echoActiveClassIfRequestMatches("raportit") ?>><a href="raportit.php">Raportit</a></li>
+                <li <?= echoActiveClassIfRequestMatches("yllapito") ?>><a href="yllapito.php">Tuotteiden ylläpito</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li <?= echoActiveClassIfRequestMatches("") ?>><a href="#">Ostoskori</a></li>
