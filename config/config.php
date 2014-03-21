@@ -20,6 +20,7 @@ define('TEMPLATE_PATH', APP_PATH . 'template' . DS);
 define('LIB_PATH', APP_PATH . 'libs' . DS);
 
 define('DEFAULT_TEMPLATE', 'default');
+define('DEFAULT_ACTION', 'indexAction');
 
 require LIB_PATH . 'Controller.php';
 require LIB_PATH . 'Database.php';

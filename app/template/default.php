@@ -58,7 +58,7 @@ function echoActiveClassIfRequestMatches($requestUri) {
                                 <li <?= echoActiveClassIfRequestMatches("lennontiedot") ?>><a href="<?= URL ?>lennontiedot">Lennontiedot</a></li>    
                             <?php endif ?>
 
-                            <?php if (Session::get('user' == 'employee')) : ?>
+                            <?php if (Session::get('user') == 'employee') : ?>
                                 <li <?= echoActiveClassIfRequestMatches("raportit") ?>><a href="<?= URL ?>raportit">Raportit</a></li>
                                 <li <?= echoActiveClassIfRequestMatches("yllapito") ?>><a href="<?= URL ?>yllapito">Tuotteiden ylläpito</a></li>
                             <?php endif ?>
@@ -83,7 +83,16 @@ function echoActiveClassIfRequestMatches($requestUri) {
 
         <div id="footer">
             <div class="container">
-                <p class="muted credit">&copy; Ostoskassi 2014 </p>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="muted credit">&copy; Ostoskassi 2014 </p>
+                    </div>
+                    <?php if (!Session::get('loggedIn')) : ?>
+                        <div class="col-md-3">
+                            <p class="muted credit"> <a class="right" href="<?= URL ?>elogin">Työntekijöiden kirjautuminen</a> </p>
+                        </div>
+                    <?php endif ?>
+                </div>
             </div>
         </div>
 

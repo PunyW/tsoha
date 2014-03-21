@@ -1,3 +1,4 @@
+DROP TABLE employee;
 DROP TABLE orders;
 DROP TABLE products;
 DROP TABLE product_categories;

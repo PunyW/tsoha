@@ -7,16 +7,24 @@ class Controller {
     protected $template;
     protected $name;
     protected $model;
+    protected $action;
 
     function __construct() {
         $this->name = strtolower(get_class($this));
         $this->viewPath = VIEW_PATH . $this->name . DS;
         $this->data = array();
         $this->template = new Template();
+        $this->action = DEFAULT_ACTION;
+    }
+
+    protected function indexAction() {
+        
     }
 
     public function render($view) {
-        if ($view == 'login') {
+        $this->indexAction();
+
+        if ($view == 'login' || $view == 'elogin') {
             $this->renderPartial($view);
         }
         $view = $view . '.php';

@@ -1,17 +1,4 @@
 <div class="container">
-    <?php if (Session::get('greeting')) : ?>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="alert alert-success">
-                    Tervetuloa!
-                </div>
-            </div>
-        </div>
-        <?php
-    endif;
-    Session::set('greeting', false);
-    ?>
-
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="row">
@@ -41,25 +28,31 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Kuva</th>
+                        <th>ID</th>
                         <th>Kuvaus</th>
                         <th>Hinta</th>
+                        <th>Tuoteryhmä</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Inc</td>
-                        <td>Kuvaus</td>
-                        <td>Hinta</td>
-                        <td><button type="button" class="btn btn-xs btn-default">
-                                <span class="glyphicon glyphicon-plus"></span></button>
-                            <button type="button" class="btn btn-xs btn-default">
-                                <span class="glyphicon glyphicon-minus"></span></button>
-                        </td>
-                    </tr> 
+
+                    <?php
+                    foreach ($data->products as $product) {
+                        ?>
+                        <tr>
+                            <td><?php
+                                echo $product->getId();
+                                ?></td>
+                            <td><?php echo $product->getDescription(); ?></td>
+                            <td><?php echo $product->getPrice(); ?></td>
+                            <td><?php echo $product->getCategory(); ?></td>
+                            <td><button type="button" class="btn btn-xs btn-default">
+                                    <span class="glyphicon glyphicon-edit"></span></button>
+                            </td>
+                        </tr> 
+                    <?php }
+                    ?>
                 </tbody>
             </table>
         </div>

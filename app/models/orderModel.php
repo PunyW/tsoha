@@ -6,9 +6,7 @@ class OrderModel extends Model {
         parent::__construct();
     }
 
-    public function getOrders() {
-        require_once '../app/libs/Common.php';
-
+    public static function getOrders() {
         $sql = "SELECT * FROM orders";
         $query = getDB()->prepare($sql);
         $query->execute();

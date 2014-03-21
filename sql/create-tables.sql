@@ -65,3 +65,9 @@ CREATE TABLE orders (
     UNIQUE(id, flight_dep_time, flight_id, passenger_id)
 );
 
+CREATE TABLE employee (
+    username VARCHAR(20) PRIMARY KEY,
+    password VARCHAR(32) NOT NULL,
+    usergroup INT NOT NULL REFERENCES user_groups(id)
+);
+

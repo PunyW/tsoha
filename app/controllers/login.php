@@ -13,7 +13,6 @@ class Login extends Controller {
         if ($this->model->checkLogin($surname, $resId)) {
             // Succesfull login
             Session::set('user', 'passenger');
-            Session::set('name', $surname);
             Session::set('loggedIn', true);
             Session::set('greeting', true);
 
@@ -23,5 +22,7 @@ class Login extends Controller {
             $this->renderPartial('login');
         }
     }
+    
+    
 
 }

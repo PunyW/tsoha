@@ -17,7 +17,9 @@ INSERT INTO product_categories(description) VALUES
     ('Kosmetiikka'), ('Alkoholi'), ('Makeiset');
 INSERT INTO products(id, description, price, category) VALUES
     ('KOS1L', 'Kossu 1l', 5.25, 2), ('BBCOL', 'Hajuvesi', 900.25, 1), ('MMM', 'Maukan maukkaat makeiset', 2.50, 3);
-INSERT INTO ORDERS(id, flight_id, flight_dep_time, passenger_id, quantity) VALUES
+INSERT INTO orders(id, flight_id, flight_dep_time, passenger_id, quantity) VALUES
     ('BBCOL', 'FI 1324', '2014-06-01 16:30:00', 1, 5), ('KOS1L', 'FI 1324', '2014-06-01 16:30:00', 1, 100), ('MMM', 'FI 1324', '2014-06-01 16:30:00', 1, 1), 
     ('BBCOL', 'FI 1324', '2014-05-31 16:30:00', 1, 25), ('KOS1L', 'FI 1324', '2014-05-31 16:30:00', 1, 955), ('MMM', 'FI 1324', '2014-05-31 16:30:00', 1, 3),
     ('MMM', 'FI 1324', '2014-05-31 16:30:00', 2, 856);
+INSERT INTO employee(username, password, usergroup) VALUES
+    ('duunari', '67a4e626c924664bd4e575287f9cdedf', 2);
