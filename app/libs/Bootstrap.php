@@ -13,6 +13,7 @@ class Bootstrap {
         if (empty($url[0])) {
             require CONTROLLER_PATH . 'index.php';
             $controller = new Index();
+            $controller->loadModel();
             $controller->index();
             return;
         }

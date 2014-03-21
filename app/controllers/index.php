@@ -10,4 +10,8 @@ class Index extends Controller {
         $this->render('index');
     }
 
+    protected function indexAction() {
+        $this->setData("products", $this->model->getProducts());
+    }
+
 }
