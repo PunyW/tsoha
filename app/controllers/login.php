@@ -19,10 +19,9 @@ class Login extends Controller {
             header('Location: ' . URL);
         } else {
             $this->setData('error', 'Antamallasi Sukunimellä ei löytynyt kyseistä varausta.');
+            $this->setData('surname', $surname);
             $this->renderPartial('login');
         }
     }
-    
-    
 
 }

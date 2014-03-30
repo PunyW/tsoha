@@ -13,6 +13,7 @@
                             <li><a href="#">Ryhmä 3</a></li>
                         </ul>
                     </div>
+                    <a href="<?= URL ?>yllapito/uusiTuote" ><button type="button" class="btn btn-default">Luo uusi tuote</button></a>
                 </div>
                 <div class="col-md-6">
                     <div class="input-group">

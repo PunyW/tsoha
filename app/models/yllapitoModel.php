@@ -9,7 +9,7 @@ class YllapitoModel extends Model {
     public function getProducts() {
         require MODEL_PATH . 'productsModel.php';
 
-        return Products::getProducts();
+        return Product::getProducts();
     }
 
 }

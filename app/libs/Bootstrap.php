@@ -11,18 +11,26 @@ class Bootstrap {
 //        print_r($url);
 
         if (empty($url[0])) {
-            require CONTROLLER_PATH . 'index.php';
-            $controller = new Index();
-            $controller->loadModel();
-            $controller->index();
-            return;
+            if (Session::get('user') != 'employee') {
+                require CONTROLLER_PATH . 'index.php';
+                $controller = new Index();
+                $controller->loadModel();
+                $controller->index();
+                return;
+            } else {
+                require CONTROLLER_PATH . 'yllapito.php';
+                $controller = new Yllapito();
+                $controller->loadModel();
+                $controller->index();
+                return;
+            }
         }
 
         $file = CONTROLLER_PATH . $url[0] . '.php';
         if (file_exists($file)) {
             require $file;
         } else {
-            $this->error();
+            error();
         }
 
         $controller = new $url[0];
@@ -32,7 +40,7 @@ class Bootstrap {
             if (method_exists($controller, $url[1])) {
                 $controller->{$url[1]}($url[2]);
             } else {
-                $this->error();
+                error();
             }
         } else {
             if (isset($url[1])) {
@@ -45,13 +53,6 @@ class Bootstrap {
         }
 
         $controller->render($url[0]);
-    }
-
-    function error() {
-        require CONTROLLER_PATH . 'error.php';
-        $controller = new Error();
-        $controller->render('error');
-        return false;
     }
 
 }

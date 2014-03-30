@@ -1,14 +1,16 @@
 <?php
 
-class Products extends Model {
+class Product {
 
     private $id;
     private $description;
     private $price;
     private $category;
+    
+    private $errors;
 
     function __construct() {
-        parent::__construct();
+        $this->errors = array();
     }
 
     public function getId() {
@@ -28,8 +30,24 @@ class Products extends Model {
     }
 
     public function setId($id) {
+        if ($this->id == $id) {
+            return;
+        }
         $this->id = $id;
-        return $this;
+
+        trim($this->id);
+
+        $this->checkNewId();
+    }
+
+    private function checkNewId() {
+        if (strlen($this->id != 5)) {
+            $this->errors['id'] = 'Tuotetunnuksen on oltava 5 merkkiä.';
+        } else if (Product::productIdExists($this->id)) {
+            $this->errors['id'] = 'Valitsemasi tuotetunnus on jo käytössä.';
+        } else {
+            unset($this->errors['id']);
+        }
     }
 
     public function setDescription($description) {
@@ -53,6 +71,19 @@ class Products extends Model {
         $query->execute();
 
         return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function productIdExists($id) {
+        $sql = "SELECT 1 FROM products WHERE id ILIKE :id";
+        $query = getDB()->prepare($sql);
+        $query->bindParam(':id', $id);
+        $query->execute();
+
+        return $query->rowCount() === 1;
+    }
+    
+    public function getErrors() {
+        return $this->errors;
     }
 
 }

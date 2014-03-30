@@ -55,4 +55,8 @@ class Controller {
         }
     }
 
+    public function setError($error) {
+        $this->setData('error', $error);
+    }
+
 }

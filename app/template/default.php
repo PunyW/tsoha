@@ -53,7 +53,9 @@ function echoActiveClassIfRequestMatches($requestUri) {
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li <?= echoActiveClassIfRequestMatches("index") ?>><a href="<?= URL ?>index">Tuotteet</a></li>
+                            <?php if (Session::get('user') != 'employee') : ?>
+                                <li <?= echoActiveClassIfRequestMatches("index") ?>><a href="<?= URL ?>index">Tuotteet</a></li>
+                            <?php endif ?>
                             <?php if (Session::get('user') == 'passenger') : ?>
                                 <li <?= echoActiveClassIfRequestMatches("lennontiedot") ?>><a href="<?= URL ?>lennontiedot">Lennontiedot</a></li>    
                             <?php endif ?>

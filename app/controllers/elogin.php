@@ -16,9 +16,10 @@ class Elogin extends Controller {
             Session::set('loggedIn', true);
             Session::set('greeting', true);
 
-            header('Location: ' . URL);
+            header('Location: ' . URL . 'yllapito/');
         } else {
             $this->setData('error', 'Antamasi tunnus tai salasana on väärin.');
+            $this->setData('username', $username);
             $this->renderPartial('elogin');
         }
     }

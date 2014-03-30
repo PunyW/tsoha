@@ -15,8 +15,6 @@ class LoginModel extends Model {
             ':resId' => $resId
         ));
 
-        $query->fetchAll();
-
         return $query->rowCount() > 0;
     }
 
