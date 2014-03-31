@@ -23,7 +23,6 @@ define('DEFAULT_TEMPLATE', 'default');
 define('DEFAULT_ACTION', 'indexAction');
 
 require LIB_PATH . 'Controller.php';
-require LIB_PATH . 'Database.php';
 require LIB_PATH . 'Model.php';
 require LIB_PATH . 'View.php';
 require LIB_PATH . 'Template.php';

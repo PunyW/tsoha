@@ -1,13 +1,4 @@
-<?php
-
-function echoActiveClassIfRequestMatches($requestUri) {
-    $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
-
-    if ($current_file_name == $requestUri) {
-        echo 'class="active"';
-    }
-}
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">

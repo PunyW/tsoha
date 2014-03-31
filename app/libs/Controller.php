@@ -14,7 +14,6 @@ class Controller {
         $this->viewPath = VIEW_PATH . $this->name . DS;
         $this->data = array();
         $this->template = new Template();
-        $this->action = DEFAULT_ACTION;
     }
 
     protected function indexAction() {
@@ -26,6 +25,7 @@ class Controller {
 
         if ($view == 'login' || $view == 'elogin') {
             $this->renderPartial($view);
+            return false;
         }
         $view = $view . '.php';
         $this->template->render($this->viewPath . $view, $this->data);
@@ -37,10 +37,10 @@ class Controller {
     }
 
     public function loadModel() {
-        $path = MODEL_PATH . $this->name . 'Model.php';
+        $path = MODEL_PATH . ucfirst($this->name) . 'Model.php';
         if (file_exists($path)) {
             require $path;
-            $path = ucfirst($this->name) . 'Model';
+            $path = $this->name . 'Model';
             $this->model = new $path;
         }
     }
