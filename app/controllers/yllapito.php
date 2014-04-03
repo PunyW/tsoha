@@ -20,6 +20,49 @@ class Yllapito extends Controller {
         $this->renderForm(false, $product);
     }
 
+    public function muokkaa($id) {
+        $product = Product::getProduct($id);
+        if ($product !== null) {
+            $this->setData('id', $product->getId());
+            $this->setData('category', $product->getCategory());
+            $this->setData('description', $product->getDescription());
+            $this->setData('price', $product->getPrice());
+            $this->renderForm(true, $product);
+        } else {
+            redirect('yllapito/uusiTuote');
+        }
+    }
+
+    public function updateProduct($id) {
+        $product = Product::getProduct($id);
+        if($product === null) {
+            alert('Tuotetta ei löytynyt');
+            redirect('yllapito');
+        }
+        
+        $product->setNewId($_POST['id']);
+        $product->setCategory($_POST['category']);
+        $product->setDescription($_POST['description']);
+        $product->setPrice($_POST['price']);
+        
+        if($product->save(false)) {
+            success('Tuotteen tiedot päivitettiin onnistuneesti');
+            redirect('yllapito');
+        }
+        
+        $this->renderForm(true, $product);
+    }
+
+    public function poistaTuote($id) {
+        $product = Product::getProduct($id);
+        if ($product !== null) {
+            $product->delete();
+            success('Tuote poistettiin onnistuneesti');
+        }
+        
+        redirect('yllapito');
+    }
+
     public function createProduct() {
         $product = new Product();
         $this->setData('id', $product->setId($_POST['id']));
@@ -27,6 +70,7 @@ class Yllapito extends Controller {
         $this->setData('description', $product->setDescription($_POST['description']));
         $this->setData('price', $product->setPrice($_POST['price']));
         if ($product->save(true)) {
+            success('Tuote luotiin onnistuneesti');
             redirect('yllapito');
         }
         $this->renderForm(false, $product);
@@ -35,6 +79,7 @@ class Yllapito extends Controller {
     private function renderForm($edit, $product) {
         $this->setData('edit', $edit);
         $this->setData('errors', $product->getErrors());
+
         $this->render('productForm');
     }
 

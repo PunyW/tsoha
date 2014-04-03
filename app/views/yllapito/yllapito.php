@@ -1,4 +1,20 @@
 <div class="container">
+    <?php if (Session::get('success')) : ?>
+        <div class="alert alert-success">
+            <?php
+            echo Session::get('success');
+            unset($_SESSION['success']);
+            ?>
+        </div>
+    <?php endif ?>
+    <?php if (Session::get('alert')) : ?>
+        <div class="alert alert-danger">
+            <?php
+            echo Session::get('alert');
+            unset($_SESSION['alert']);
+            ?>
+        </div>
+    <?php endif ?>
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="row">
@@ -29,7 +45,7 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Tuotetunnus</th>
                         <th>Kuvaus</th>
                         <th>Hinta</th>
                         <th>Tuoteryhmä</th>
@@ -48,8 +64,17 @@
                             <td><?php echo $product->getDescription(); ?></td>
                             <td><?php echo $product->getPrice(); ?></td>
                             <td><?php echo $product->getCategory(); ?></td>
-                            <td><button type="button" class="btn btn-xs btn-default">
-                                    <span class="glyphicon glyphicon-edit"></span></button>
+                            <td>
+                                <a href="<?= URL ?>yllapito/muokkaa/<?php echo $product->getId(); ?>">
+                                    <button type="button" class="btn btn-xs btn-default">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                </a>
+                                <a href="<?= URL ?>yllapito/poistaTuote/<?php echo $product->getId(); ?>">
+                                    <button type="button" class="btn btn-xs btn-default">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </a>
                             </td>
                         </tr> 
                     <?php }

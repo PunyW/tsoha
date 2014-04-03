@@ -31,6 +31,14 @@ function error($error = "404 - File not found") {
     return false;
 }
 
+function success($notice) {
+    Session::set('success', $notice);
+}
+
+function alert($alert) {
+    Session::set('alert', $alart);
+}
+
 function redirect($controller = "", $action = "", $data = "") {
     header("Location: " . URL . "{$controller}/{$action}/{$data}");
     exit;

@@ -20,7 +20,11 @@
                 <?php endif; ?>
                 <div class="row">
                     <div class="col-lg-12">
+                        <?php if ($data->edit) : ?>
+                        <form method="post" action="<?= URL ?>yllapito/updateProduct/<?php echo $data->id ?>" class="form-horizontal">
+                        <?php else: ?>
                         <form method="post" action="<?= URL ?>yllapito/createProduct" class="form-horizontal">
+                            <?php endif ?>
                             <div class="col-md-4">
                                 <div class="media">
                                     <a class="pull-left" href="#">

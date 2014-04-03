@@ -37,7 +37,7 @@ class Bootstrap {
         $controller->loadModel();
 
         if (isset($url[2])) {
-            if (method_exists($controller, $url[2])) {
+            if (method_exists($controller, $url[1])) {
                 $controller->{$url[1]}($url[2]);
             } else {
                 error();
