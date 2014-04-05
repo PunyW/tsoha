@@ -20,9 +20,16 @@ class Controller {
         
     }
 
-    public function render($view) {
-        $this->indexAction();
+    public function setAction($action = null) {
+        $this->action = $action;
+    }
 
+    public function render($view) {
+        if($this->action === null) {
+            $this->indexAction();
+        }
+        
+        
         if ($view == 'login' || $view == 'elogin') {
             $this->renderPartial($view);
             return false;

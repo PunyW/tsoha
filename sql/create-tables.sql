@@ -51,6 +51,7 @@ CREATE TABLE product_categories (
 CREATE TABLE products (
     id VARCHAR(5) PRIMARY KEY,
     description TEXT NOT NULL,
+    product_name VARCHAR(50) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     category INT NOT NULL REFERENCES product_categories(id) ON DELETE CASCADE
 );

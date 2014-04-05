@@ -24,9 +24,13 @@
                             Tuoteryhmä<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Ryhmä 1</a></li>
-                            <li><a href="#">Ryhmä 2</a></li>
-                            <li><a href="#">Ryhmä 3</a></li>
+                            <li><a href="<?= URL ?>yllapito">Kaikki Tuotteet</a></li>
+                            <?php
+                            foreach ($data->categories as $category) {
+                                ?>
+                                <li><a href="<?= URL ?>yllapito/tuoteryhma/<?php echo $category->getId(); ?>"><?php echo $category->getDescription(); ?></a></li>
+                            <?php }
+                            ?>
                         </ul>
                     </div>
                     <a href="<?= URL ?>yllapito/uusiTuote" ><button type="button" class="btn btn-default">Luo uusi tuote</button></a>
@@ -46,7 +50,7 @@
                 <thead>
                     <tr>
                         <th>Tuotetunnus</th>
-                        <th>Kuvaus</th>
+                        <th>Nimi</th>
                         <th>Hinta</th>
                         <th>Tuoteryhmä</th>
                         <th></th>
@@ -61,7 +65,7 @@
                             <td><?php
                                 echo $product->getId();
                                 ?></td>
-                            <td><?php echo $product->getDescription(); ?></td>
+                            <td><?php echo $product->getProduct_Name(); ?></td>
                             <td><?php echo $product->getPrice(); ?></td>
                             <td><?php echo $product->getCategory(); ?></td>
                             <td>

@@ -6,6 +6,7 @@ class Product {
     private $description;
     private $price;
     private $category;
+    private $product_name;
     private $newId;
     private $errors;
 
@@ -28,7 +29,25 @@ class Product {
     public function getCategory() {
         return $this->category;
     }
+    
+    public function getProduct_Name() {
+        return $this->product_name;
+    }
 
+    public function setName($name) {
+        if ($this->product_name == $name) {
+            return;
+        }
+        $this->product_name = $name;
+
+        trim($this->product_name);
+
+        $this->checkName($this->product_name);
+
+        return $this->product_name;
+    }
+
+    
     public function setId($id) {
         if ($this->id == $id) {
             return;
@@ -41,7 +60,7 @@ class Product {
 
         return $id;
     }
-    
+
     public function setNewId($id) {
         if ($this->id == $id) {
             $this->newId = $id;
@@ -63,6 +82,16 @@ class Product {
             $this->errors['id'] = 'Valitsemasi tuotetunnus on jo käytössä.';
         } else {
             unset($this->errors['id']);
+        }
+    }
+    
+    private function checkName($name) {
+        if (strlen($name) < 3) {
+            $this->errors['name'] = 'Tuotteen nimi on oltava vähintään 3 merkkiä pitkä';
+        } else if (strlen($name) > 55) {
+            $this->errors['name'] = 'Tuotteen nimi ei voi olla yli 55 merkkiä pitkä';
+        } else {
+            unset($this->errors['name']);
         }
     }
 
@@ -109,6 +138,15 @@ class Product {
 
         return $query->fetch();
     }
+    
+    public static function getProductsFromCategory($category) {
+        $sql = "SELECT * FROM products, product_categories WHERE products.category = product_categories.id AND product_categories.id = :id";
+        $query = getDB()->prepare($sql);
+        $query->bindParam(':id', $category);
+        $query->execute();
+        
+        return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+    }
 
     public static function productIdExists($id) {
         $sql = "SELECT 1 FROM products WHERE id ILIKE :id";
@@ -138,7 +176,7 @@ class Product {
         $query->bindParam(':description', $this->description);
         $query->bindParam(':price', $this->price);
         $query->bindParam(':category', $this->category);
-        
+
         return $query->execute();
     }
 

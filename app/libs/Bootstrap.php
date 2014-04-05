@@ -8,8 +8,6 @@ class Bootstrap {
         $url = rtrim($url, '/');
         $url = explode('/', $url);
 
-//        print_r($url);
-
         if (empty($url[0])) {
             if (Session::get('user') != 'employee') {
                 require CONTROLLER_PATH . 'index.php';
@@ -35,15 +33,18 @@ class Bootstrap {
 
         $controller = new $url[0];
         $controller->loadModel();
+        $controller->setAction();
 
         if (isset($url[2])) {
             if (method_exists($controller, $url[1])) {
+                $controller->setAction($url[1]);
                 $controller->{$url[1]}($url[2]);
             } else {
                 error();
             }
         } else if (isset($url[1])) {
             if (method_exists($controller, $url[1])) {
+                $controller->setAction($url[1]);
                 $controller->{$url[1]}();
             } else {
                 error();
