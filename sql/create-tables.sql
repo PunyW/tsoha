@@ -13,7 +13,7 @@ CREATE TABLE flights (
 );
 
 CREATE TABLE reservations (
-    reservation_id VARCHAR(32) PRIMARY KEY,
+    reservation_id VARCHAR(131) PRIMARY KEY,
     flight_dep_time TIMESTAMP NOT NULL,
     flight_id VARCHAR(10) NOT NULL,
     FOREIGN KEY (flight_id, flight_dep_time) REFERENCES flights(flight_id, departure_time)
@@ -26,7 +26,7 @@ CREATE TABLE passengers (
     surname VARCHAR(255) NOT NULL,
     phonenumber VARCHAR(15) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    reservation_id VARCHAR(32) NOT NULL REFERENCES reservations(reservation_id) ON DELETE CASCADE
+    reservation_id VARCHAR(131) NOT NULL REFERENCES reservations(reservation_id) ON DELETE CASCADE
 );
 
 CREATE TABLE wish (
@@ -68,7 +68,7 @@ CREATE TABLE orders (
 
 CREATE TABLE employee (
     username VARCHAR(20) PRIMARY KEY,
-    password VARCHAR(32) NOT NULL,
+    password VARCHAR(131) NOT NULL,
     usergroup INT NOT NULL REFERENCES user_groups(id)
 );
 

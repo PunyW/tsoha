@@ -48,11 +48,13 @@ function __autoload($class) {
     if ($class == 'assets') {
         return;
     }
+    $modelPath = MODEL_PATH . $class . "Model.php";
+    $libPath = LIB_PATH . $class . '.php';
 
-    $classPath = MODEL_PATH . $class . "Model.php";
-
-    if (file_exists($classPath)) {
-        require $classPath;
+    if (file_exists($modelPath)) {
+        require $modelPath;
+    } else if(file_exists($libPath)) {
+        require $libPath;
     } else {
         throw new Exception("Unable to load {$class}.");
     }

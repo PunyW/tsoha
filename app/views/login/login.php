@@ -2,7 +2,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <form class="form-signin" role="form" action="<?=URL?>login/login" method="post">
             <?php if (!empty($data->error)) { ?>

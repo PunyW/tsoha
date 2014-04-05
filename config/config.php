@@ -6,6 +6,8 @@ define('DB_USERNAME', null);
 define('DB_PASSWORD', null);
 // END OF DATABASE CONFIGURATION
 
+// App wide salting key for passwords, do not change after setting it up once!
+define('SALT_KEY', 'Ostoskassi2014asd');
 define('DEFAULT_TITLE', 'Ostoskassi');
 
 define('ROOT_PATH', dirname(dirname(__FILE__)));
@@ -23,10 +25,5 @@ define('LIB_PATH', APP_PATH . 'libs' . DS);
 define('DEFAULT_TEMPLATE', 'default');
 define('DEFAULT_ACTION', 'indexAction');
 
-require LIB_PATH . 'Controller.php';
-require LIB_PATH . 'Model.php';
-require LIB_PATH . 'View.php';
-require LIB_PATH . 'Template.php';
 require LIB_PATH . 'Common.php';
-require LIB_PATH . 'Session.php';
-require LIB_PATH . 'Bootstrap.php';
+

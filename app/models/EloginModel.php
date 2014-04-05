@@ -8,11 +8,11 @@ class EloginModel extends Model {
 
     public function checkLogin($username, $pw) {
         $sql = "SELECT username, password FROM employee WHERE "
-                . "username = :username AND password = MD5(:pw)";
+                . "username = :username AND password = :pw";
         $query = getDB()->prepare($sql);
         $query->execute(array(
             ':username' => $username,
-            ':pw' => $pw
+            ':pw' => Hash::create('sha512', $pw)
         ));
 
         $query->fetchAll();
