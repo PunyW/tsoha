@@ -36,7 +36,11 @@ function success($notice) {
 }
 
 function alert($alert) {
-    Session::set('alert', $alart);
+    Session::set('alert', $alert);
+}
+
+function redirectBack() {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
 function redirect($controller = "", $action = "", $data = "") {
@@ -53,7 +57,7 @@ function __autoload($class) {
 
     if (file_exists($modelPath)) {
         require $modelPath;
-    } else if(file_exists($libPath)) {
+    } else if (file_exists($libPath)) {
         require $libPath;
     } else {
         throw new Exception("Unable to load {$class}.");

@@ -25,6 +25,7 @@ class Yllapito extends Controller {
 
     public function uusiTuote() {
         $product = new Product();
+        $this->setData("categories", ProductCategories::getCategories());
         $this->renderForm(false, $product);
     }
 
@@ -33,12 +34,22 @@ class Yllapito extends Controller {
         $this->setData("categories", ProductCategories::getCategories());
         if ($product !== null) {
             $this->setData('id', $product->getId());
+            $this->setData('name', $product->getName());
             $this->setData('category', $product->getCategory());
-            $this->setData('description', $product->getCategory_Name());
+            $this->setData('description', $product->getDescription());
             $this->setData('price', $product->getPrice());
             $this->renderForm(true, $product);
         } else {
             redirect('yllapito/uusiTuote');
+        }
+    }
+    
+    public function search() {
+        if(isset($_GET['product_search'])) {
+            $data = $_GET['product_search'];
+            $data = strtolower($data);
+            $this->setData("products", Product::searchProduct($data));
+            $this->setData("categories", ProductCategories::getCategories());
         }
     }
 
@@ -53,6 +64,7 @@ class Yllapito extends Controller {
         $product->setCategory($_POST['category']);
         $product->setDescription($_POST['description']);
         $product->setPrice($_POST['price']);
+        $product->setName($_POST['name']);
         
         if($product->save(false)) {
             success('Tuotteen tiedot päivitettiin onnistuneesti');
@@ -78,6 +90,7 @@ class Yllapito extends Controller {
         $this->setData('category', $product->setCategory($_POST['category']));
         $this->setData('description', $product->setDescription($_POST['description']));
         $this->setData('price', $product->setPrice($_POST['price']));
+        $this->setData('name', $product->setName($_POST['name']));
         if ($product->save(true)) {
             success('Tuote luotiin onnistuneesti');
             redirect('yllapito');

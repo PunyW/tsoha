@@ -26,23 +26,25 @@
                                 <form method="post" action="<?= URL ?>yllapito/createProduct" class="form-horizontal">
                                 <?php endif ?>
                                 <div class="col-md-4">
-                                    <div class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="../img/icons.png">
-                                        </a>
-                                    </div>
+                                    <!--                                    <div class="media">
+                                                                            <a class="pull-left" href="#">
+                                                                                <img class="media-object" src="">
+                                                                            </a>
+                                                                        </div>-->
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label class="control-label" for="description">Tuotteen kuvaus</label>
                                     <textarea name="description" class="form-control" 
-                                              rows="3" placeholder="Tuotteen kuvaus" required><?php
+                                              rows="3" required><?php
                                                   if (!empty($data->description)) {
-                                                      echo trim($data->description);
+                                                      echo $data->description;
+                                                  } else {
+                                                      echo 'Tuotteen kuvaus';
                                                   }
                                                   ?></textarea>
                                 </div>
                                 <div class = "col-md-4"></div>
-                                <div class = "form-group col-md-3">
+                                <div class = "form-group col-md-2">
                                     <label class = "control-label" for = "price">Hinta</label>
                                     <input type = "number" name = "price" class = "form-control" placeholder = "20.00" value = "<?php
                                     if (!empty($data->price)) {
@@ -55,6 +57,14 @@
                                     <input type = "text" name = "id" class = "form-control" placeholder = "Tuotetunnus, 5 merkkiä pitkä" value = "<?php
                                     if (!empty($data->id)) {
                                         echo $data->id;
+                                    }
+                                    ?>"required />
+                                </div>
+                                <div class = "form-group col-md-3">
+                                    <label class = "control-label" for = "name">Tuotenimi</label>
+                                    <input type = "text" name = "name" class = "form-control" placeholder = "Tuotenimi, min. 3 merkkiä" value = "<?php
+                                    if (!empty($data->name)) {
+                                        echo $data->name;
                                     }
                                     ?>"required />
                                 </div>
@@ -74,11 +84,12 @@
                                 <div class = "form-group col-lg-12">
                                     <button class = "btn btn-default" type = "submit">
                                         <?php if ($data->edit) : ?>
-                                            Päivitä
+                                            Päivitä </button>
+                                        <a href="<?= URL ?>yllapito/poistaTuote/<?php echo $data->id ?>">
+                                            <button class="btn btn-default">Poista</button></a>
                                         <?php else: ?>
-                                            Lisää tuote
-                                        <?php endif; ?>
-                                    </button>
+                                        Lisää tuote</button>
+                                    <?php endif; ?>
                                 </div>
                             </form>
                     </div>

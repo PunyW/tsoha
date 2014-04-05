@@ -30,15 +30,15 @@ class Product {
     public function getCategory() {
         return $this->category;
     }
-    
-    public function getProduct_Name() {
+
+    public function getName() {
         return $this->product_name;
     }
-    
+
     public function getCategory_name() {
         return $this->category_name;
     }
-    
+
     public function setName($name) {
         if ($this->product_name == $name) {
             return;
@@ -52,7 +52,6 @@ class Product {
         return $this->product_name;
     }
 
-    
     public function setId($id) {
         if ($this->product_id == $id) {
             return;
@@ -89,7 +88,7 @@ class Product {
             unset($this->errors['id']);
         }
     }
-    
+
     private function checkName($name) {
         if (strlen($name) < 3) {
             $this->errors['name'] = 'Tuotteen nimi on oltava vähintään 3 merkkiä pitkä';
@@ -132,7 +131,6 @@ class Product {
         $query = getDB()->prepare($sql);
         $query->execute();
 
-//        print_r($query->fetchAll(PDO::FETCH_CLASS, __CLASS__));
         return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -145,7 +143,18 @@ class Product {
 
         return $query->fetch();
     }
-    
+
+    public static function searchProduct($search) {
+        $search = '%' . $search . '%';
+        $sql = "SELECT * FROM products WHERE lower(product_name) LIKE :search OR lower(description) LIKE :search2";
+        $query = getDB()->prepare($sql);
+        $query->bindParam(':search', $search);
+        $query->bindParam(':search2', $search);
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+    }
+
     public static function getProductsFromCategory($category) {
         $sql = "SELECT * FROM products, product_categories "
                 . "WHERE products.category = product_categories.category_id "
@@ -153,12 +162,12 @@ class Product {
         $query = getDB()->prepare($sql);
         $query->bindParam(':id', $category);
         $query->execute();
-        
+
         return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function productIdExists($id) {
-        $sql = "SELECT 1 FROM products WHERE id ILIKE :id";
+        $sql = "SELECT 1 FROM products WHERE product_id ILIKE :id";
         $query = getDB()->prepare($sql);
         $query->bindParam(':id', $id);
         $query->execute();
@@ -167,25 +176,28 @@ class Product {
     }
 
     private function insert() {
-        $sql = "INSERT INTO products (id, description, price, category) VALUES (:id, :description, :price, :category)";
+        $sql = "INSERT INTO products (product_id, description, price, category, product_name) "
+                . "VALUES (:id, :description, :price, :category, :name)";
         $query = getDB()->prepare($sql);
         $query->bindParam(':id', $this->product_id);
         $query->bindParam(':description', $this->description);
         $query->bindParam(':price', $this->price);
         $query->bindParam(':category', $this->category);
+        $query->bindParam(':name', $this->product_name);
 
         return $query->execute();
     }
 
     private function update() {
-        $sql = "UPDATE products SET id = :new_id, description = :description, "
-                . "price = :price, category = :category WHERE id ILIKE :id";
+        $sql = "UPDATE products SET product_id = :new_id, description = :description, "
+                . "price = :price, category = :category, product_name = :name WHERE product_id ILIKE :id";
         $query = getDb()->prepare($sql);
         $query->bindParam(':new_id', $this->newId);
         $query->bindParam(':id', $this->product_id);
         $query->bindParam(':description', $this->description);
         $query->bindParam(':price', $this->price);
         $query->bindParam(':category', $this->category);
+        $query->bindParam(':name', $this->product_name);
 
         return $query->execute();
     }
@@ -193,7 +205,7 @@ class Product {
     public function delete() {
         if ($this->product_id === null)
             return;
-        $sql = "DELETE FROM products WHERE id ILIKE :id";
+        $sql = "DELETE FROM products WHERE product_id ILIKE :id";
         $query = getDb()->prepare($sql);
         $query->bindParam(':id', $this->product_id);
         $query->execute();

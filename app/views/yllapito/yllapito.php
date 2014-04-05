@@ -18,7 +18,7 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             Tuoteryhmä<span class="caret"></span>
@@ -35,18 +35,14 @@
                     </div>
                     <a href="<?= URL ?>yllapito/uusiTuote" ><button type="button" class="btn btn-default">Luo uusi tuote</button></a>
                 </div>
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Hae tuotetta...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Hae</button>
-                        </span>
-                    </div>
-                </div>
+                <form class="form-inline" role="form" action="<?=URL?>yllapito/search" method="get">
+                    <input type="text" name="product_search" class="form-control" placeholder="Hae tuotetta...">
+                    <input type="submit" value="Hae" class="btn btn-default" >
+                </form>
             </div>
         </div>
         <div class="panel-body">
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped" id="products">
                 <thead>
                     <tr>
                         <th>Tuotetunnus</th>
@@ -65,7 +61,7 @@
                             <td><?php
                                 echo $product->getId();
                                 ?></td>
-                            <td><?php echo $product->getProduct_Name(); ?></td>
+                            <td><?php echo $product->getName(); ?></td>
                             <td><?php echo $product->getPrice(); ?></td>
                             <td><?php echo $product->getCategory_name(); ?></td>
                             <td>

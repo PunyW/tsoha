@@ -45,7 +45,7 @@
                         ?>
                         <tr>
                             <td></td>
-                            <td><?php echo $product->getProduct_Name(); ?></td>
+                            <td><?php echo $product->getName(); ?></td>
                             <td><?php echo $product->getPrice(); ?></td>
                             <td><button type="button" class="btn btn-xs btn-default">
                                     <span class="glyphicon glyphicon-plus"></span></button>
