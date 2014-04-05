@@ -12,7 +12,7 @@
                             <?php
                             foreach ($data->categories as $category) {
                                 ?>
-                                <li><a href="<?= URL ?>tuoteryhma/<?php echo $category->getId(); ?>"><?php echo $category->getDescription(); ?></a></li>
+                                <li><a href="<?= URL ?>index/tuoteryhma/<?php echo $category->getId(); ?>"><?php echo $category->getCategory_Name(); ?></a></li>
                             <?php }
                             ?>
                         </ul>

@@ -2,8 +2,8 @@
 
 class ProductCategories {
 
-    private $id;
-    private $description;
+    private $category_id;
+    private $category_name;
     private $errors;
     
     function __construct() {
@@ -11,11 +11,11 @@ class ProductCategories {
     }
 
     public function getId() {
-        return $this->id;
+        return $this->category_id;
     }
 
-    public function getDescription() {
-        return $this->description;
+    public function getCategory_Name() {
+        return $this->category_name;
     }
 
     public function getErrors() {

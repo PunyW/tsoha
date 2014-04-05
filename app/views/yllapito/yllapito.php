@@ -28,7 +28,7 @@
                             <?php
                             foreach ($data->categories as $category) {
                                 ?>
-                                <li><a href="<?= URL ?>yllapito/tuoteryhma/<?php echo $category->getId(); ?>"><?php echo $category->getDescription(); ?></a></li>
+                                <li><a href="<?= URL ?>yllapito/tuoteryhma/<?php echo $category->getId(); ?>"><?php echo $category->getCategory_Name(); ?></a></li>
                             <?php }
                             ?>
                         </ul>
@@ -67,7 +67,7 @@
                                 ?></td>
                             <td><?php echo $product->getProduct_Name(); ?></td>
                             <td><?php echo $product->getPrice(); ?></td>
-                            <td><?php echo $product->getCategory(); ?></td>
+                            <td><?php echo $product->getCategory_name(); ?></td>
                             <td>
                                 <a href="<?= URL ?>yllapito/muokkaa/<?php echo $product->getId(); ?>">
                                     <button type="button" class="btn btn-xs btn-default">

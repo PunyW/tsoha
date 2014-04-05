@@ -30,10 +30,11 @@ class Yllapito extends Controller {
 
     public function muokkaa($id) {
         $product = Product::getProduct($id);
+        $this->setData("categories", ProductCategories::getCategories());
         if ($product !== null) {
             $this->setData('id', $product->getId());
             $this->setData('category', $product->getCategory());
-            $this->setData('description', $product->getDescription());
+            $this->setData('description', $product->getCategory_Name());
             $this->setData('price', $product->getPrice());
             $this->renderForm(true, $product);
         } else {

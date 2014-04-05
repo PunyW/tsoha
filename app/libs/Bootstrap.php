@@ -31,6 +31,10 @@ class Bootstrap {
             error();
         }
 
+        if($url[0] == 'assets') {
+            return;
+        }
+        
         $controller = new $url[0];
         $controller->loadModel();
         $controller->setAction();

@@ -40,7 +40,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class ="navbar-brand" href="index">Ostoskassi</a>
+                        <a class ="navbar-brand" href="<?= URL ?>">Ostoskassi</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">

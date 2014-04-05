@@ -13,11 +13,11 @@ INSERT INTO wishes(wish_id, flight_id, flight_dep_time, passenger_id) VALUES
     (1, 'FI 1324', '2014-06-01 16:30:00', 1), (2, 'FI 1324', '2014-06-01 16:30:00', 1), (3, 'FI 1324', '2014-06-01 16:30:00', 1), 
     (1, 'FI 1324', '2014-05-31 16:30:00', 1), (2, 'FI 1324', '2014-05-31 16:30:00', 1), (3, 'FI 1324', '2014-05-31 16:30:00', 1),
     (2, 'FI 1324', '2014-05-31 16:30:00', 2);
-INSERT INTO product_categories(description) VALUES 
+INSERT INTO product_categories(category_name) VALUES 
     ('Kosmetiikka'), ('Alkoholi'), ('Makeiset');
-INSERT INTO products(id, description, price, category, product_name) VALUES
+INSERT INTO products(product_id, description, price, category, product_name) VALUES
     ('KOS1L', '1 litran kossu pullo', 5.25, 2, 'Kossu 1 litra'), ('BBCOL', 'Tosi hieno & Kallis hajuvesi', 900.25, 1, 'Jonkin sortin hajuvesi'), ('MMM', 'Karkkipussi', 2.50, 3, 'Maukan maukkaat makeiset');
-INSERT INTO orders(id, flight_id, flight_dep_time, passenger_id, quantity) VALUES
+INSERT INTO orders(order_id, flight_id, flight_dep_time, passenger_id, quantity) VALUES
     ('BBCOL', 'FI 1324', '2014-06-01 16:30:00', 1, 5), ('KOS1L', 'FI 1324', '2014-06-01 16:30:00', 1, 100), ('MMM', 'FI 1324', '2014-06-01 16:30:00', 1, 1), 
     ('BBCOL', 'FI 1324', '2014-05-31 16:30:00', 1, 25), ('KOS1L', 'FI 1324', '2014-05-31 16:30:00', 1, 955), ('MMM', 'FI 1324', '2014-05-31 16:30:00', 1, 3),
     ('MMM', 'FI 1324', '2014-05-31 16:30:00', 2, 856);
