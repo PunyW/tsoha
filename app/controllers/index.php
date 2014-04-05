@@ -21,5 +21,14 @@ class Index extends Controller {
         $this->setData("products", Product::getProductsFromCategory($category));
         $this->setData("categories", ProductCategories::getCategories());
     }
+    
+    public function search() {
+        if(isset($_GET['product_search'])) {
+            $data = $_GET['product_search'];
+            $data = strtolower($data);
+            $this->setData("products", Product::searchProduct($data));
+            $this->setData("categories", ProductCategories::getCategories());
+        }
+    }
 
 }
