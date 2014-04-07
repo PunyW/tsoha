@@ -9,5 +9,4 @@ class IndexModel extends Model {
     public function getProducts() {
         return Product::getProducts();
     }
-
 }

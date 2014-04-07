@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="<?= URL ?>assets/css/navbar.css">
         <link rel="stylesheet" href="<?= URL ?>assets/css/bootstrap-checkbox.css">
         <link rel="stylesheet" href="<?= URL ?>assets/css/main.css">
+        <link rel="stylesheet" href="<?= URL ?>assets/css/popup.css">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -28,7 +29,6 @@
     </head>
 
     <body>
-
         <div id="wrap">
             <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="container">
@@ -61,9 +61,9 @@
                                 <li <?= echoActiveClassIfRequestMatches("") ?>><a href="<?= URL ?>#">Ostoskori</a></li>
                             <?php endif ?>
                             <?php if (Session::get('loggedIn')) : ?>
-                                <li <?= echoActiveClassIfRequestMatches("") ?>><a href="<?= URL ?>logout">Kirjaudu ulos</a></li>   
+                                <li><a href="<?= URL ?>logout">Kirjaudu ulos</a></li>   
                             <?php else : ?>
-                                <li <?= echoActiveClassIfRequestMatches("") ?>><a href="<?= URL ?>login">Kirjaudu sisään</a></li>      
+                                <li><a href="#passengerLogin" data-toggle="modal">Kirjaudu sisään</a></li>      
                             <?php endif ?>
                         </ul>
                     </div> <!-- /.nav-collapse -->
@@ -85,6 +85,31 @@
                             <p class="muted credit"> <a class="right" href="<?= URL ?>elogin">Työntekijöiden kirjautuminen</a> </p>
                         </div>
                     <?php endif ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login -->
+        <div class="modal fade" id="passengerLogin" tabindex="-1" role="dialog" aria-labelledby="passengerLoginLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="passengerLoginLabel">Kirjaudu sisään</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin" role="form" action="<?= URL ?>login/login" method="post">
+                            <?php if (!empty($data->error)) { ?>
+                                <div class="alert alert-danger">Virhe! <?php echo $data->error; ?> </div>
+                            <?php } ?>
+                            <p><input type="text" name="surname" class="form-control" placeholder="Sukunimi" value="<?php echo $data->surname; ?>"required autofocus /></p>
+                            <p><input type="text" name="resId" class="form-control" placeholder="Varausnumero" required /></p>
+                            <p><button class="btn btn-success" type="submit">Kirjaudu sisään</button></p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        
+                    </div>
                 </div>
             </div>
         </div>
