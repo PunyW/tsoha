@@ -24,7 +24,7 @@ class ProductCategories {
 
     public static function getCategories() {
         $sql = "SELECT * FROM product_categories";
-        $query = getDB()->prepare($sql);
+        $query = Database::getDB()->prepare($sql);
         $query->execute();
 
         return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);

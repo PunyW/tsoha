@@ -102,7 +102,7 @@
                             <?php if (!empty($data->error)) { ?>
                                 <div class="alert alert-danger">Virhe! <?php echo $data->error; ?> </div>
                             <?php } ?>
-                            <p><input type="text" name="surname" class="form-control" placeholder="Sukunimi" value="<?php echo $data->surname; ?>"required autofocus /></p>
+                            <p><input type="text" name="surname" class="form-control" placeholder="Sukunimi" required autofocus /></p>
                             <p><input type="text" name="resId" class="form-control" placeholder="Varausnumero" required /></p>
                             <p><button class="btn btn-success" type="submit">Kirjaudu sisään</button></p>
                         </form>

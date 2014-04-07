@@ -8,7 +8,7 @@ class OrderModel extends Model {
 
     public static function getOrders() {
         $sql = "SELECT * FROM orders";
-        $query = getDB()->prepare($sql);
+        $query = Database::getDB()->prepare($sql);
         $query->execute();
 
         return $query->fetchAll(PDO::FETCH_OBJ);

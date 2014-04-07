@@ -8,8 +8,7 @@ class Yllapito extends Controller {
     }
 
     public function index() {
-        $this->setData("products", Product::getProducts());
-        $this->setData("categories", ProductCategories::getCategories());
+        $this->indexAction();
         $this->render('yllapito');
     }
 

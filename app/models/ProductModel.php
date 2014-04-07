@@ -126,49 +126,43 @@ class Product {
     }
 
     public static function getProducts() {
-        $sql = "SELECT * FROM products, product_categories "
-                . "WHERE products.category = product_categories.category_id";
-        $query = getDB()->prepare($sql);
-        $query->execute();
+        $query = Database::select("SELECT * FROM products, product_categories "
+                        . "WHERE products.category = product_categories.category_id");
 
         return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function getProduct($id) {
-        $sql = "SELECT * FROM products WHERE product_id ILIKE :id";
-        $query = getDB()->prepare($sql);
-        $query->bindParam(':id', $id);
+        $query = Database::select("SELECT * FROM products WHERE product_id ILIKE :id", array(':id' => $id));
         $query->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-        $query->execute();
-
         return $query->fetch();
     }
 
     public static function searchProduct($search) {
         $search = '%' . $search . '%';
-        $sql = "SELECT * FROM products WHERE lower(product_name) LIKE :search OR lower(description) LIKE :search2";
-        $query = getDB()->prepare($sql);
-        $query->bindParam(':search', $search);
-        $query->bindParam(':search2', $search);
-        $query->execute();
+        $data = array(
+            ':search' => $search,
+            ':search2' => $search
+        );
+
+        $query = Database::select("SELECT * FROM products WHERE lower(product_name) "
+                        . "LIKE :search OR lower(description) LIKE :search2", $data);
 
         return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function getProductsFromCategory($category) {
-        $sql = "SELECT * FROM products, product_categories "
-                . "WHERE products.category = product_categories.category_id "
-                . "AND product_categories.category_id = :id";
-        $query = getDB()->prepare($sql);
-        $query->bindParam(':id', $category);
-        $query->execute();
+        $data = array(':id' => $category);
+        $query = Database::select("SELECT * FROM products, product_categories "
+                        . "WHERE products.category = product_categories.category_id "
+                        . "AND product_categories.category_id = :id", $data);
 
         return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function productIdExists($id) {
         $sql = "SELECT 1 FROM products WHERE product_id ILIKE :id";
-        $query = getDB()->prepare($sql);
+        $query = Database::getDB()->prepare($sql);
         $query->bindParam(':id', $id);
         $query->execute();
 
@@ -176,37 +170,47 @@ class Product {
     }
 
     private function insert() {
-        $sql = "INSERT INTO products (product_id, description, price, category, product_name) "
-                . "VALUES (:id, :description, :price, :category, :name)";
-        $query = getDB()->prepare($sql);
-        $query->bindParam(':id', $this->product_id);
-        $query->bindParam(':description', $this->description);
-        $query->bindParam(':price', $this->price);
-        $query->bindParam(':category', $this->category);
-        $query->bindParam(':name', $this->product_name);
+        return Database::insert('products', array(
+                    'product_id' => $this->product_id,
+                    'description' => $this->description,
+                    'price' => $this->price,
+                    'category' => $this->category,
+                    'product_name' => $this->product_name
+        ));
+    }
 
-        return $query->execute();
+    private function updateProductId() {
+        $sql = "UPDATE products SET product_id = :new_id WHERE product_id ILIKE :id";
+        $query = Database::getDB()->prepare($sql);
+        $query->bindParam(':new_id', $this->newId);
+        $query->bindParam(':id', $this->product_id);
+        $query->
+                execute();
     }
 
     private function update() {
-        $sql = "UPDATE products SET product_id = :new_id, description = :description, "
-                . "price = :price, category = :category, product_name = :name WHERE product_id ILIKE :id";
-        $query = getDb()->prepare($sql);
-        $query->bindParam(':new_id', $this->newId);
-        $query->bindParam(':id', $this->product_id);
-        $query->bindParam(':description', $this->description);
-        $query->bindParam(':price', $this->price);
-        $query->bindParam(':category', $this->category);
-        $query->bindParam(':name', $this->product_name);
+        if ($this->product_id != $this->newId) {
+            $this->updateProductId();
+        }
 
-        return $query->execute();
+        $postData = array(
+            'description' => $this->description,
+            'price' => $this->price,
+            'category' => $this->category,
+            'product_name' => $this->product_name
+        );
+
+        return Database::update('products', $postData, 'product_id ILIKE :id', $this->
+                        product_id);
     }
 
     public function delete() {
-        if ($this->product_id === null)
+        if ($this->product_id === null) {
             return;
+        }
+
         $sql = "DELETE FROM products WHERE product_id ILIKE :id";
-        $query = getDb()->prepare($sql);
+        $query = Database::getDB()->prepare($sql);
         $query->bindParam(':id', $this->product_id);
         $query->execute();
     }
