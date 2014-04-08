@@ -58,7 +58,8 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php if (Session::get('user') != 'employee') : ?>
-                                <li <?= echoActiveClassIfRequestMatches("") ?>><a href="<?= URL ?>#">Ostoskori</a></li>
+                                <li <?= echoActiveClassIfRequestMatches("ostoskori") ?>><a href="<?= URL ?>ostoskori">
+                                        Ostoskori <span class="badge" ><?php echo sizeOfShoppingCart() ?></span></a></li>
                             <?php endif ?>
                             <?php if (Session::get('loggedIn')) : ?>
                                 <li><a href="<?= URL ?>logout">Kirjaudu ulos</a></li>   
@@ -108,7 +109,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        
+
                     </div>
                 </div>
             </div>

@@ -1,20 +1,5 @@
 <div class="container">
-    <?php if (Session::get('success')) : ?>
-        <div class="alert alert-success">
-            <?php
-            echo Session::get('success');
-            unset($_SESSION['success']);
-            ?>
-        </div>
-    <?php endif ?>
-    <?php if (Session::get('alert')) : ?>
-        <div class="alert alert-danger">
-            <?php
-            echo Session::get('alert');
-            unset($_SESSION['alert']);
-            ?>
-        </div>
-    <?php endif ?>
+    <?php printNotices(); ?>
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="row">

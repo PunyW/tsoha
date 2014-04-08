@@ -1,4 +1,5 @@
 <div class="container">
+    <?php printNotices(); ?>
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="row">
@@ -18,7 +19,7 @@
                         </ul>
                     </div>
                 </div>
-                <form class="form-inline" role="form" action="<?=URL?>index/search" method="get">
+                <form class="form-inline" role="form" action="<?= URL ?>index/search" method="get">
                     <input type="text" name="product_search" class="form-control" placeholder="Hae tuotetta...">
                     <input type="submit" value="Hae" class="btn btn-default" >
                 </form>
@@ -43,8 +44,8 @@
                             <td></td>
                             <td><?php echo $product->getName(); ?></td>
                             <td><?php echo $product->getPrice(); ?></td>
-                            <td><button type="button" class="btn btn-xs btn-default">
-                                    <span class="glyphicon glyphicon-plus"></span></button>
+                            <td><a href="<?= URL ?>ostoskori/addToCart/<?php echo $product->getId(); ?>/<?php echo $product->getName(); ?>"><button type="button" class="btn btn-xs btn-default">
+                                        <span class="glyphicon glyphicon-plus"></span></button></a>
                                 <button type="button" class="btn btn-xs btn-default">
                                     <span class="glyphicon glyphicon-minus"></span></button>
                             </td>

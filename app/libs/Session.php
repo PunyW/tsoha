@@ -13,6 +13,8 @@ class Session {
     public static function get($key) {
         if (isset($_SESSION[$key])) {
             return $_SESSION[$key];
+        } else {
+            return null;
         }
     }
 
@@ -20,5 +22,4 @@ class Session {
         unset($_SESSION);
         session_destroy();
     }
-
 }

@@ -16,7 +16,7 @@ class Yllapito extends Controller {
         $this->setData("products", $this->model->getProducts());
         $this->setData("categories", ProductCategories::getCategories());
     }
-    
+
     public function tuoteryhma($category) {
         $this->setData("products", Product::getProductsFromCategory($category));
         $this->setData("categories", ProductCategories::getCategories());
@@ -42,9 +42,9 @@ class Yllapito extends Controller {
             redirect('yllapito/uusiTuote');
         }
     }
-    
+
     public function search() {
-        if(isset($_GET['product_search'])) {
+        if (isset($_GET['product_search'])) {
             $data = $_GET['product_search'];
             $data = strtolower($data);
             $this->setData("products", Product::searchProduct($data));
@@ -54,22 +54,22 @@ class Yllapito extends Controller {
 
     public function updateProduct($id) {
         $product = Product::getProduct($id);
-        if($product === null) {
+        if ($product === null) {
             alert('Tuotetta ei löytynyt');
             redirect('yllapito');
         }
-        
+
         $product->setNewId($_POST['id']);
         $product->setCategory($_POST['category']);
         $product->setDescription($_POST['description']);
         $product->setPrice($_POST['price']);
         $product->setName($_POST['name']);
-        
-        if($product->save(false)) {
+
+        if ($product->save(false)) {
             success('Tuotteen tiedot päivitettiin onnistuneesti');
             redirect('yllapito');
         }
-        
+
         $this->renderForm(true, $product);
     }
 
@@ -79,11 +79,12 @@ class Yllapito extends Controller {
             $product->delete();
             success('Tuote poistettiin onnistuneesti');
         }
-        
+
         redirect('yllapito');
     }
 
     public function createProduct() {
+        $this->setData("categories", ProductCategories::getCategories());
         $product = new Product();
         $this->setData('id', $product->setId($_POST['id']));
         $this->setData('category', $product->setCategory($_POST['category']));
