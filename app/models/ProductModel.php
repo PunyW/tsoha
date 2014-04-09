@@ -78,6 +78,7 @@ class Product {
 
         return $id;
     }
+    
 
     private function checkId($id) {
         if (strlen($id) != 5) {
@@ -184,8 +185,7 @@ class Product {
         $query = Database::getDB()->prepare($sql);
         $query->bindParam(':new_id', $this->newId);
         $query->bindParam(':id', $this->product_id);
-        $query->
-                execute();
+        $query->execute();
     }
 
     private function update() {

@@ -21,6 +21,7 @@ define('VIEW_PATH', APP_PATH . 'views' . DS);
 define('TEMPLATE_PATH', APP_PATH . 'template' . DS);
 
 define('LIB_PATH', APP_PATH . 'libs' . DS);
+define('IMG_PATH', ROOT_PATH . DS . 'assets' . DS . 'img' . DS);
 
 define('DEFAULT_TEMPLATE', 'default');
 define('DEFAULT_ACTION', 'indexAction');

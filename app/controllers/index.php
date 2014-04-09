@@ -30,5 +30,11 @@ class Index extends Controller {
             $this->setData("categories", ProductCategories::getCategories());
         }
     }
+    
+    public function testing() {
+        $this->setData("products", Product::getProducts());
+        $this->setData("categories", ProductCategories::getCategories());
+        $this->render('test');
+    }
 
 }

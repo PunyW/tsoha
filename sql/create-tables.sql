@@ -57,7 +57,7 @@ CREATE TABLE products (
 );
 
 CREATE TABLE orders (
-    order_id VARCHAR(5) NOT NULL REFERENCES products(product_id),
+    order_id VARCHAR(5) NOT NULL REFERENCES products(product_id) ON UPDATE CASCADE,
     quantity INT NOT NULL,
     flight_dep_time TIMESTAMP NOT NULL,
     flight_id VARCHAR(10) NOT NULL,

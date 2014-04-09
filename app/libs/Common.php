@@ -21,19 +21,15 @@ function error($error = "404 - File not found") {
 }
 
 function success($notice) {
-    Session::set('success', $notice)
-
-    ;
+    Session::set('success', $notice);
 }
 
 function printNotices() {
     if (Session::get('success')) {
-        echo
-
-        '<div class="alert alert-success">';
+        echo '<div class="alert alert-success">';
         echo Session::get('success');
-        unset($_SESSION['success']);
         echo '</div>';
+        unset($_SESSION['success']);
     }
     if (Session::get('alert')) {
         echo '<div class="alert alert-danger">';
@@ -54,9 +50,7 @@ function redirectBack() {
 function redirect($controller = "", $action = "", $data = "") {
     $url = URL . "{$controller}/{$action}/{$data}";
     $url = rtrim($url, '/');
-    header("
-
-Location: $url");
+    header("Location: $url");
     exit;
 }
 
@@ -86,28 +80,17 @@ function echoActiveClassIfRequestMatches($requestUri) {
 }
 
 function initShoppingCart() {
-    if (empty(
-                    $_SESSION['cart'])) {
+    if (empty($_SESSION['cart'])) {
         $_SESSION['cart'] = array();
     }
 }
 
-function addToShoppingCart($productId) {
-    array_push($_SESSION['cart'], $productId);
-}
-
-function clearShoppingCart() {
-    unset($_SESSION['cart']);
-}
-
-function
-
-getShoppingCart() {
-    return $_SESSION['cart'];
-}
-
 function sizeOfShoppingCart() {
-    return count($_SESSION['cart'])
+    $size = 0;
 
-    ;
+    foreach ($_SESSION['cart'] as $value) {
+        $size += $value;
+    }
+
+    return $size;
 }
