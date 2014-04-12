@@ -12,10 +12,12 @@
         </title>
 
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
 
         <!-- Optional theme -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
+        <link rel="stylesheet" href="<?= URL ?>assets/css/bootstrap.css">
+        <link rel="stylesheet" href="<?= URL ?>assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?= URL ?>assets/css/navbar.css">
         <link rel="stylesheet" href="<?= URL ?>assets/css/bootstrap-checkbox.css">
         <link rel="stylesheet" href="<?= URL ?>assets/css/main.css">

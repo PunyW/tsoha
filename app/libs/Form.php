@@ -12,8 +12,9 @@ class Form {
     }
 
     public function post($field) {
-        $this->postData[$field] = $_POST[$field];
+        $this->postData[$field] = htmlEncode($_POST[$field]);
         $this->currentItem = $field;
+        
         return $this;
     }
 
@@ -63,8 +64,8 @@ class Form {
             }
 
             $str .= '</ul>';
-            alert($str);
+            return $str;
         }
     }
-
+    
 }

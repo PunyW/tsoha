@@ -54,22 +54,23 @@ class Yllapito extends Controller {
 
     public function updateProduct($id) {
         $product = Product::getProduct($id);
+        
         if ($product === null) {
             alert('Tuotetta ei löytynyt');
             redirect('yllapito');
         }
-
-        $product->setNewId($_POST['id']);
-        $product->setCategory($_POST['category']);
-        $product->setDescription($_POST['description']);
-        $product->setPrice($_POST['price']);
-        $product->setName($_POST['name']);
-
+        
+        $this->setData('id', $product->setNewId(getPost('id')));
+        $this->setData('category', $product->setCategory(getPost('category')));
+        $this->setData('description', $product->setDescription(getPost('description')));
+        $this->setData('price', $product->setPrice(getPost('price')));
+        $this->setData('name', $product->setName(getPost('name')));
+        
         if ($product->save(false)) {
             success('Tuotteen tiedot päivitettiin onnistuneesti');
             redirect('yllapito');
         }
-
+        
         $this->renderForm(true, $product);
     }
 
@@ -86,23 +87,32 @@ class Yllapito extends Controller {
     public function createProduct() {
         $this->setData("categories", ProductCategories::getCategories());
         $product = new Product();
-        $this->setData('id', $product->setId($_POST['id']));
-        $this->setData('category', $product->setCategory($_POST['category']));
-        $this->setData('description', $product->setDescription($_POST['description']));
-        $this->setData('price', $product->setPrice($_POST['price']));
-        $this->setData('name', $product->setName($_POST['name']));
+        
+        $this->setData('id', $product->setId(getPost('id')));
+        $this->setData('category', $product->setCategory(getPost('category')));
+        $this->setData('description', $product->setDescription(getPost('description')));
+        $this->setData('price', $product->setPrice(getPost('price')));
+        $this->setData('name', $product->setName(getPost('name')));
+        
         if ($product->save(true)) {
             success('Tuote luotiin onnistuneesti');
             redirect('yllapito');
         }
+        
         $this->renderForm(false, $product);
     }
 
     private function renderForm($edit, $product) {
+        $this->setData("categories", ProductCategories::getCategories());
         $this->setData('edit', $edit);
         $this->setData('errors', $product->getErrors());
 
         $this->render('productForm');
+    }
+    
+    public function testing() {
+        $this->setData("categories", ProductCategories::getCategories());
+        $this->render('testProductForm');
     }
 
 }

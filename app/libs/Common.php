@@ -11,6 +11,10 @@ function checkLogin($requiredRole) {
     }
 }
 
+function getPost($field) {
+    return htmlEncode($_POST[$field]);
+}
+
 function error($error = "404 - File not found") {
 
     require CONTROLLER_PATH . 'error.php';
@@ -61,14 +65,17 @@ function __autoload($class) {
     $modelPath = MODEL_PATH . $class . "Model.php";
     $libPath = LIB_PATH . $class . '.php';
 
-    if (
-            file_exists($modelPath)) {
+    if (file_exists($modelPath)) {
         require $modelPath;
     } else if (file_exists($libPath)) {
         require $libPath;
     } else {
         throw new Exception("Unable to load {$class}.");
     }
+}
+
+function htmlEncode($s) {
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
 
 function echoActiveClassIfRequestMatches($requestUri) {

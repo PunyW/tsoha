@@ -41,7 +41,7 @@ class Product {
 
     public function setName($name) {
         if ($this->product_name == $name) {
-            return;
+            return $name;
         }
         $this->product_name = $name;
 
@@ -54,7 +54,7 @@ class Product {
 
     public function setId($id) {
         if ($this->product_id == $id) {
-            return;
+            return $id;
         }
         $this->product_id = $id;
 
@@ -68,7 +68,7 @@ class Product {
     public function setNewId($id) {
         if ($this->product_id == $id) {
             $this->newId = $id;
-            return;
+            return $id;
         }
         $this->newId = $id;
 
@@ -93,7 +93,7 @@ class Product {
     private function checkName($name) {
         if (strlen($name) < 3) {
             $this->errors['name'] = 'Tuotteen nimi on oltava vähintään 3 merkkiä pitkä';
-        } else if (strlen($name) > 55) {
+        } else if (strlen($name) > 50) {
             $this->errors['name'] = 'Tuotteen nimi ei voi olla yli 55 merkkiä pitkä';
         } else {
             unset($this->errors['name']);
@@ -107,14 +107,14 @@ class Product {
 
     public function setPrice($price) {
         if ($this->price == $price) {
-            return;
+            return $this->price;
         }
         $this->price = $price;
 
         if ($this->price > 99999999.99) {
             $this->errors['price'] = 'Tuotteen hinta ei voi olla yli 99 999 999.99 €';
         } else if ($this->price < 0) {
-            $this->errors['price'] = 'Tuotteen hinta ei voi olla negativiinen, tai 0';
+            $this->errors['price'] = 'Tuotteen hinta täytyy olla positiivinen';
         }
 
         $this->price = $price;

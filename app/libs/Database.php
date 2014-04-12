@@ -21,7 +21,7 @@ class Database {
      */
     public static function insert($table, $data) {
         ksort($data);
-
+        
         $fieldNames = implode(", ", array_keys($data));
         $fieldValues = ':' . implode(', :', array_keys($data));
 
