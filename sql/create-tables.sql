@@ -16,6 +16,7 @@ CREATE TABLE reservations (
     reservation_id VARCHAR(131) PRIMARY KEY,
     flight_dep_time TIMESTAMP NOT NULL,
     flight_id VARCHAR(10) NOT NULL,
+    seats VARCHAR(50),
     FOREIGN KEY (flight_id, flight_dep_time) REFERENCES flights(flight_id, departure_time)
 );
 

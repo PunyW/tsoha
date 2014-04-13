@@ -7,15 +7,21 @@ class LoginModel extends Model {
     }
 
     public function checkLogin($surname, $resId) {
-        $sql = "SELECT surname, reservation_id FROM PASSENGERS WHERE "
-                . "surname = :surname AND reservation_id = :resId";
-        $query = Database::getDB()->prepare($sql);
-        $query->execute(array(
-            ':surname' => $surname,
-            ':resId' => Hash::create('sha512', $resId)
-        ));
+        $query = Database::select("SELECT * FROM passengers WHERE "
+                        . "surname = :surname AND reservation_id = :resId", array(
+                    ':surname' => $surname,
+                    ':resId' => Hash::create('sha512', $resId)));
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $query->fetch();
 
-        return $query->rowCount() > 0;
+
+        if (empty($result)) {
+            return false;
+        }
+
+        Session::set('passenger', $result['passenger_id']);
+        success('Tervetuloa ' . $result['firstname'] . ' ' . $result['surname']);
+        return true;
     }
 
 }

@@ -5,8 +5,11 @@ function checkLogin($requiredRole) {
     $user = Session::get('user');
 
     if ($logged == false || $user != $requiredRole) {
-        Session::destroy();
-        error('401 - Unauthorized access');
+        if ($requiredRole == 'employee') {
+            redirect('elogin');
+        } else {
+            redirect('login');
+        }
         exit;
     }
 }
@@ -16,7 +19,6 @@ function getPost($field) {
 }
 
 function error($error = "404 - File not found") {
-
     require CONTROLLER_PATH . 'error.php';
     $controller = new Error();
     $controller->setError($error);

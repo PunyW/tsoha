@@ -4,7 +4,7 @@ class Ostoskori extends Controller {
 
     function __construct() {
         parent::__construct();
-        $this->cart = array();
+        
     }
 
     protected function indexAction() {
@@ -38,19 +38,11 @@ class Ostoskori extends Controller {
         redirect('index');
     }
 
-    public function testing() {
-        $productId = $_POST['productId'];
-        $productName = $_POST['productName'];
-        $productQuantity = $_POST['productQuantity'];
-
-        $this->addToCart($productId, $productName, $productQuantity);
-        redirectBack();
-    }
-    
-    public function testShow() {
-        foreach ($this->model->getShoppingCart() as $value => $key) {
-            echo 'Value: ' . $value . ' Key: ' . $key . '<br>';
-        }
+    public function confirmCart() {
+        checkLogin('passenger');
+        $this->model->confirmCart();
+        success('Tuotteet tilattu lennolle onnistuneesti!');
+        $this->emptyCart();
     }
 
 }

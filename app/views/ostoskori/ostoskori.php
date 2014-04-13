@@ -44,7 +44,7 @@
                         Ostosten hinta yhteensä: <?php echo $sum; ?> €
                     </div>
                     <div class="col-md-2">
-                        <button class="button btn btn-sm btn-info">Vahvista tilaus</button>
+                        <a href="<?PHP URL ?>ostoskori/confirmCart"><button class="button btn btn-sm btn-info">Vahvista tilaus</button></a>
                     </div>
                 </div>
             </div>

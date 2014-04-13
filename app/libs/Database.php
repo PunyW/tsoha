@@ -81,4 +81,30 @@ class Database {
 
         return $query->execute();
     }
+    
+    public static function updateMul($table, $data, $where, $whereData) {
+        ksort($data);
+        ksort($whereData);
+
+        $fieldDetails = null;
+        foreach ($data as $key => $value) {
+            $fieldDetails .= "$key = :$key, ";
+        }
+        // Remove the last , from the fieldDetails field
+        $fieldDetails = rtrim($fieldDetails, ', ');
+
+        $sql = "UPDATE $table SET $fieldDetails WHERE $where";
+        $query = Database::getDB()->prepare($sql);
+
+        foreach ($data as $key => $value) {
+            $query->bindValue(":$key", $value);
+        }
+        
+        foreach ($whereData as $key => $value) {
+            $query->bindValue("$key", $value);
+        }
+
+        return $query->execute();
+    }
+    
 }

@@ -51,7 +51,7 @@
                             require_once '../app/libs/Model.php';
                             require '../app/models/orderModel.php';
 
-                            $model = new OrderModel();
+                            $model = new Order();
 
                             $results = $model->getOrders();
 

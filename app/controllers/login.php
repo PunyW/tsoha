@@ -14,9 +14,8 @@ class Login extends Controller {
             // Succesfull login
             Session::set('user', 'passenger');
             Session::set('loggedIn', true);
-            Session::set('greeting', true);
 
-            header('Location: ' . URL);
+            redirect('index');
         } else {
             $this->setData('error', 'Antamallasi Sukunimellä ei löytynyt kyseistä varausta.');
             $this->setData('surname', $surname);
