@@ -32,7 +32,8 @@ CREATE TABLE passengers (
 
 CREATE TABLE wish (
     wish_id SERIAL PRIMARY KEY,
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    wish_name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE wishes (

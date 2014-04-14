@@ -32,7 +32,8 @@ class Order extends Model {
 
     public static function getOrder($passenger_id) {
         $query = Database::select("SELECT * FROM orders, products WHERE "
-                        . "passenger_id = :passenger_id AND orders.order_id = products.product_id", array(':passenger_id' => $passenger_id));
+                        . "passenger_id = :passenger_id AND "
+                        . "orders.order_id = products.product_id", array(':passenger_id' => $passenger_id));
         return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -44,7 +45,6 @@ class Order extends Model {
         ));
         $query->setFetchMode(PDO::FETCH_ASSOC);
         return $query->fetch();
-        
     }
 
 }

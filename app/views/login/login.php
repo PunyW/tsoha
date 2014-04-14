@@ -8,7 +8,7 @@
                 <div class="alert alert-danger">Virhe! <?php echo $data->error; ?> </div>
             <?php } ?>
             <h2 class="form-signin-heading">Kirjaudu sisään</h2>
-            <input type="text" name="surname" class="form-control" placeholder="Sukunimi" value="<?php echo $data->surname; ?>"required autofocus />
+            <input type="text" name="surname" class="form-control" placeholder="Sukunimi" value="<?php if (!empty($data->surname)) { echo $data->surname; } ?>"required autofocus />
             <input type="text" name="resId" class="form-control" placeholder="Varausnumero" required />
             <button class="btn btn-lg btn-primary btn-block" type="submit">Kirjaudu sisään</button>
         </form>

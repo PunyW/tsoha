@@ -7,11 +7,10 @@ INSERT INTO reservations (reservation_id, flight_dep_time, flight_id, seats) VAL
 INSERT INTO passengers (user_group, firstname, surname, phonenumber, email, reservation_id)  VALUES 
     (1, 'Jaska', 'Jokunen', '+358404044044', 'jaska@jokunen.fi', '6ebc686efdd4c2699ecd510114312873c7a4412d46e61d0425fce32b4200f84a929b262060541b33c4ce137779cae910d4d04c7494cff1ac1c71eab77373c62f'), 
 (1, 'Tero', 'Martikainen', '+19572669', 'perusjamppa@hotmail.com', 'fe233f087f77c779731ac3ab3b581ce6272ce668e0aac8545a3330d81b6020b345a7ce3e197f109aa37998a94139ff11f33be5300d8544d386871afde5120357'); 
-INSERT INTO wish (description) VALUES 
-    ('Kasvisruoka'), ('Käytävä paikka'), ('Ikkuna paikka');
+INSERT INTO wish (description, wish_name) VALUES 
+    ('Kasvisruoka', 'kasvisruoka'), ('Käytävä paikka', 'kaytava'), ('Ikkuna paikka', 'ikkuna'), ('Enemmän jalkatilaa', 'jalkatila'), ('toive 5', 'toive5'), ('toive 6', 'toive6'), ('toive 7', 'toive7');
 INSERT INTO wishes(wish_id, flight_id, flight_dep_time, passenger_id) VALUES
     (1, 'FI 1324', '2014-06-01 16:30:00', 1), (2, 'FI 1324', '2014-06-01 16:30:00', 1), (3, 'FI 1324', '2014-06-01 16:30:00', 1), 
-    (1, 'FI 1324', '2014-05-31 16:30:00', 1), (2, 'FI 1324', '2014-05-31 16:30:00', 1), (3, 'FI 1324', '2014-05-31 16:30:00', 1),
     (2, 'FI 1324', '2014-05-31 16:30:00', 2);
 INSERT INTO product_categories(category_name) VALUES 
     ('Kosmetiikka'), ('Alkoholi'), ('Makeiset');

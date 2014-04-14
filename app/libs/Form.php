@@ -12,9 +12,11 @@ class Form {
     }
 
     public function post($field) {
-        $this->postData[$field] = htmlEncode($_POST[$field]);
-        $this->currentItem = $field;
-        
+        $input = htmlEncode($_POST[$field]);
+        if ($input) {
+            $this->postData[$field] = $input;
+            $this->currentItem = $field;
+        }
         return $this;
     }
 
@@ -67,5 +69,5 @@ class Form {
             return $str;
         }
     }
-    
+
 }

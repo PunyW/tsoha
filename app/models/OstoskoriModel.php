@@ -32,6 +32,7 @@ class OstoskoriModel {
 
     public function emptyShoppingCart() {
         unset($_SESSION['cart']);
+        initShoppingCart();
     }
 
     public function confirmCart() {
@@ -56,7 +57,7 @@ class OstoskoriModel {
         $postData = array(
             'quantity' => $amount,
         );
-
+        
         $whereData = array(
             ':product_id' => $productId,
             ':flight_id' => $flightId,

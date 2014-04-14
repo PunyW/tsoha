@@ -10,7 +10,6 @@ class Passenger {
     private $destination_airport;
     private $estimated_arrival;
     private $seats;
-    
     private $errors;
 
     function __construct() {
@@ -36,15 +35,15 @@ class Passenger {
     public function getErrors() {
         return $this->errors;
     }
-    
+
     public function getDestination() {
         return $this->destination_airport;
     }
-    
+
     public function getDepartureAirport() {
         return $this->departure_airport;
     }
-    
+
     public function getDepartureTime() {
         return $this->departure_time;
     }
@@ -52,11 +51,11 @@ class Passenger {
     public function getEstimatedArrival() {
         return $this->estimated_arrival;
     }
-    
+
     public function getSeats() {
         return $this->seats;
     }
-    
+
     public function getBoardingTime() {
         return '30 minuuttia ennen lähtöä';
     }
@@ -73,6 +72,7 @@ class Passenger {
         $query = Database::select("SELECT * FROM passengers, reservations, flights WHERE "
                         . "passengers.reservation_id = reservations.reservation_id AND "
                         . "flights.flight_id ILIKE reservations.flight_id AND "
+                        . "reservations.flight_dep_time = flights.departure_time AND "
                         . "passenger_id = :passenger_id", array(':passenger_id' => $passenger_id));
         $query->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
         return $query->fetch();
