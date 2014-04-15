@@ -52,10 +52,10 @@ class Wish {
         }
         
         $query = Database::select("SELECT * FROM wishes WHERE "
-                        . "passenger_id = :passenger_id AND wish_id = :wish_id", array(
-                    ':passenger_id' => $passengerId,
-                    ':wish_id' => $wish->getId()
-        ));
+                    . "passenger_id = :passenger_id AND wish_id = :wish_id", array(
+                        ':passenger_id' => $passengerId,
+                        ':wish_id' => $wish->getId()
+                    ));
         $query->setFetchMode(PDO::FETCH_ASSOC);
         return $query->fetch();
     }

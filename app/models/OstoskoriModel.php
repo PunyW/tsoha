@@ -38,22 +38,21 @@ class OstoskoriModel {
     public function confirmCart() {
         $passengerId = Session::get('passenger');
         $passenger = Passenger::getPassenger($passengerId);
-        $flightId = $passenger->getFlight_id();
-        $flightDepTime = $passenger->getDepartureTime();
+        $flightId = $passenger->getFlightId();
 
 
         foreach ($this->getShoppingCart() as $productId => $amount) {
             $result = Order::checkOrder($passengerId, $productId);
             if (empty($result)) {
-                $this->insert($productId, $amount, $flightDepTime, $flightId, $passengerId);
+                $this->insert($productId, $amount, $flightId, $passengerId);
             } else {
                 $amount += $result['quantity'];
-                $this->update($productId, $amount, $flightDepTime, $flightId, $passengerId);
+                $this->update($productId, $amount, $flightId, $passengerId);
             }
         }
     }
 
-    private function update($productId, $amount, $flightDepTime, $flightId, $passengerId) {
+    private function update($productId, $amount, $flightId, $passengerId) {
         $postData = array(
             'quantity' => $amount,
         );
@@ -62,18 +61,16 @@ class OstoskoriModel {
             ':product_id' => $productId,
             ':flight_id' => $flightId,
             ':passenger_id' => $passengerId,
-            'flight_dep_time' => $flightDepTime
         );
 
         return Database::updateMul('orders', $postData, 'order_id ILIKE :product_id AND flight_id ILIKE :flight_id'
-                        . ' AND passenger_id = :passenger_id AND flight_dep_time = :flight_dep_time ', $whereData);
+                        . ' AND passenger_id = :passenger_id  ', $whereData);
     }
 
-    private function insert($productId, $amount, $flightDepTime, $flightId, $passengerId) {
+    private function insert($productId, $amount, $flightId, $passengerId) {
         Database::insert('orders', array(
             'order_id' => $productId,
             'quantity' => $amount,
-            'flight_dep_time' => $flightDepTime,
             'flight_id' => $flightId,
             'passenger_id' => $passengerId
         ));

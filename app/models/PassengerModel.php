@@ -4,18 +4,23 @@ class Passenger {
 
     private $firstname;
     private $surname;
-    private $flight_id;
+    private $flight_number;
     private $departure_airport;
     private $departure_time;
     private $destination_airport;
     private $estimated_arrival;
     private $seats;
+    private $flight_id;
     private $errors;
 
     function __construct() {
         $this->errors = array();
     }
 
+    public function getFlightId() {
+        return $this->flight_id;
+    }
+    
     public function getFirstname() {
         return $this->firstname;
     }
@@ -28,8 +33,8 @@ class Passenger {
         return $this->firstname . " " . $this->surname;
     }
 
-    public function getFlight_id() {
-        return $this->flight_id;
+    public function getFlightNumber() {
+        return $this->flight_number;
     }
 
     public function getErrors() {
@@ -71,8 +76,7 @@ class Passenger {
     public static function getPassenger($passenger_id) {
         $query = Database::select("SELECT * FROM passengers, reservations, flights WHERE "
                         . "passengers.reservation_id = reservations.reservation_id AND "
-                        . "flights.flight_id ILIKE reservations.flight_id AND "
-                        . "reservations.flight_dep_time = flights.departure_time AND "
+                        . "flights.flight_id = reservations.flight_id AND "
                         . "passenger_id = :passenger_id", array(':passenger_id' => $passenger_id));
         $query->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
         return $query->fetch();

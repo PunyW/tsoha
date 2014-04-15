@@ -13,7 +13,7 @@
         
         <div class="col-lg-4">
             <?php 
-                echo 'Lennonnumero: ' . $passenger->getFlight_id();
+                echo 'Lennonnumero: ' . $passenger->getFlightNumber();
             ?>
         </div>
         <legend>Lennon tiedot</legend>

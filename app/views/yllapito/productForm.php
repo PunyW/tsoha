@@ -85,13 +85,14 @@
                                     <button class = "btn btn-default" type = "submit">
                                         <?php if ($data->edit) : ?>
                                             Päivitä </button>
-                                        <a href="<?= URL ?>yllapito/poistaTuote/<?php echo $data->id ?>">
-                                            <button class="btn btn-default">Poista</button></a>
-                                        <?php else: ?>
+                                    <?php else: ?>
                                         Lisää tuote</button>
                                     <?php endif; ?>
                                 </div>
                             </form>
+                            <?php if ($data->edit) : ?><a href="<?= URL ?>yllapito/poistaTuote/<?php echo $data->id ?>">
+                                    <button class="btn btn-default">Poista</button></a>
+                                <?php endif; ?>
                     </div>
                 </div>
             </div>

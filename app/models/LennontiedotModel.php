@@ -8,22 +8,20 @@ class LennontiedotModel {
 
     public function confirmWishes($data, $passengerId) {
         $passenger = Passenger::getPassenger($passengerId);
-        $flightId = $passenger->getFlight_id();
-        $flightDepTime = $passenger->getDepartureTime();
+        $flightId = $passenger->getFlightId();
 
         foreach ($data as $wish => $value) {
             $result = Wish::checkWish($passengerId, $wish);
             if(!$result) {
                 $result = Wish::getWish($wish);
-                $this->insert($result->getId(), $flightDepTime, $flightId, $passengerId);
+                $this->insert($result->getId(), $flightId, $passengerId);
             }
         }
     }
 
-    private function insert($wishId, $flightDepTime, $flightId, $passengerId) {
+    private function insert($wishId, $flightId, $passengerId) {
         Database::insert('wishes', array(
             'wish_id' => $wishId,
-            'flight_dep_time' => $flightDepTime,
             'flight_id' => $flightId,
             'passenger_id' => $passengerId
         ));
