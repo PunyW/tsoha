@@ -18,16 +18,11 @@ class OstoskoriModel {
         }
     }
 
-    public function removeFromShoppingCart($productId, $productQuantity) {
+    public function removeFromShoppingCart($productId) {
         if (isset($_SESSION['cart'][$productId])) {
-            $_SESSION['cart'][$productId] -= $productQuantity;
-            if ($_SESSION['cart'][$productId] < 0) {
-                unset($_SESSION['cart'][$productId]);
-            }
-            success('Tuote poistettiin ostoskorista');
-        } else {
-            alert('Kyseistä tuotetta ei löytynyt ostoskorista');
-        }
+            unset($_SESSION['cart'][$productId]);
+            success('Tuote poistettiin ostoskorista onnistuneesti.');
+        } 
     }
 
     public function emptyShoppingCart() {
@@ -39,7 +34,6 @@ class OstoskoriModel {
         $passengerId = Session::get('passenger');
         $passenger = Passenger::getPassenger($passengerId);
         $flightId = $passenger->getFlightId();
-
 
         foreach ($this->getShoppingCart() as $productId => $amount) {
             $result = Order::checkOrder($passengerId, $productId);
@@ -56,7 +50,7 @@ class OstoskoriModel {
         $postData = array(
             'quantity' => $amount,
         );
-        
+
         $whereData = array(
             ':product_id' => $productId,
             ':flight_id' => $flightId,

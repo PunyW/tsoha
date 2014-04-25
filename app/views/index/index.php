@@ -57,6 +57,7 @@
                         </div>
                         <input type="hidden" name="productId" value="<?php echo $product->getId(); ?>" />
                         <input type="hidden" name="productName" value="<?php echo $product->getName(); ?>" />
+                        <input type="hidden" name="redirectURL" value="<?php echo $_SERVER['REQUEST_URI']; ?>" />
                     </form>
                 </div>
             <?php }

@@ -46,5 +46,12 @@ class Order extends Model {
         $query->setFetchMode(PDO::FETCH_ASSOC);
         return $query->fetch();
     }
+    
+    public static function cancel($passengerId) {
+        $sql = "DELETE FROM orders WHERE passenger_id = :id";
+        $query = Database::getDB()->prepare($sql);
+        $query->bindParam(':id', $passengerId);
+        $query->execute();
+    }
 
 }

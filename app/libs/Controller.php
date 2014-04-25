@@ -29,7 +29,6 @@ class Controller {
             $this->indexAction();
         }
         
-        
         if ($view == 'login' || $view == 'elogin') {
             $this->renderPartial($view);
             return false;

@@ -13,7 +13,7 @@ class Yllapito extends Controller {
     }
 
     protected function indexAction() {
-        $this->setData("products", $this->model->getProducts());
+        $this->setData("products", Product::getProducts());
         $this->setData("categories", ProductCategories::getCategories());
     }
 

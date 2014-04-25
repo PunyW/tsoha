@@ -21,16 +21,17 @@ class Ostoskori extends Controller {
         $productId = $_POST['productId'];
         $productName = $_POST['productName'];
         $productQuantity = $_POST['productQuantity'];
-
+        $url = ltrim($_POST['redirectURL'], '/tsoha');
+        
         $this->model->addToShoppingCart($productId, $productQuantity);
 
         success($productQuantity . ' kpl ' . $productName . ' lisättiin ostoskoriin.');
-        redirect('index');
+        redirect($url);
     }
 
-    public function removeFromCart() {
-        $this->model->removeFromShoppingCart($productId, $productQuantity);
-        redirectBack();
+    public function removeFromCart($productId) {
+        $this->model->removeFromShoppingCart($productId);
+        redirect('ostoskori');
     }
 
     public function emptyCart() {

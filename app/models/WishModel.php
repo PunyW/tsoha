@@ -7,7 +7,6 @@ class Wish {
     private $wish_name;
     
     function __construct() {
-        
     }
     
     public function getName() {

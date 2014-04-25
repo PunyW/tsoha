@@ -77,8 +77,8 @@
 
         </div>
 
-        <div id="footer">
-            <div class="container">
+        <div class="container">
+            <div id="footer">
                 <div class="row">
                     <div class="col-md-9">
                         <p class="muted credit">&copy; Ostoskassi 2014 </p>
@@ -116,6 +116,7 @@
                 </div>
             </div>
         </div>
+        <!-- / Login -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
         <script src="<?= URL ?>assets/js/bootstrap.min.js"></script>

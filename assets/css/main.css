@@ -17,6 +17,8 @@ html, body {
 
 /* Set the fixed height of the footer here */
 #push, #footer {
+    position: relative;
+    margin-top: 20px;
     height: 30px;
 }
 #footer {
