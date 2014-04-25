@@ -57,7 +57,7 @@ class OstoskoriModel {
             ':passenger_id' => $passengerId,
         );
 
-        return Database::updateMul('orders', $postData, 'order_id ILIKE :product_id AND flight_id ILIKE :flight_id'
+        return Database::updateMul('orders', $postData, 'order_id ILIKE :product_id AND flight_id = :flight_id'
                         . ' AND passenger_id = :passenger_id  ', $whereData);
     }
 
